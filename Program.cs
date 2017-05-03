@@ -75,7 +75,7 @@ namespace CMP1127M {
                 isGameOver = true;
               }
 
-              int averageRoll = totalNumber/6;
+              int averageRoll = totalNumber/totalRolls;
 
               Console.WriteLine("Total rolls: " + totalRolls);
               Console.WriteLine("1 was rolled " + rollValues[0] + " times.");
@@ -280,21 +280,39 @@ namespace CMP1127M {
         }
 
         static void Main(string[] args) {
-          Console.Clear();
-
-          Console.WriteLine("Welcome to Dice Game!");
-          Console.Write("Number of players (if 1 then an AI will be used): ");
-
-          int playerCount = Convert.ToInt32(Console.ReadLine());
-
-          Console.Write("Score to play to: ");
-
-          int maxScore = Convert.ToInt32(Console.ReadLine());
-
-          Game game = new Game(playerCount, maxScore);
-          while (game.isGameOver == false) {
+          bool isPlaying = true;
+          while (isPlaying == true) {
             Console.Clear();
-            game.nextTurn();
+
+            Console.BackgroundColor = ConsoleColor.Blue;
+            Console.ForegroundColor = ConsoleColor.White;
+            Console.WriteLine("Dice Game");
+            Console.ResetColor();
+
+            Console.Write("Number of players (if 1 then an AI will be used): ");
+
+            int playerCount = Convert.ToInt32(Console.ReadLine());
+
+            Console.Write("Score to play to: ");
+
+            int maxScore = Convert.ToInt32(Console.ReadLine());
+
+            Game game = new Game(playerCount, maxScore);
+            while (game.isGameOver == false) {
+              Console.Clear();
+              game.nextTurn();
+            }
+
+            while (1 == 1) {
+              Console.WriteLine("\nWould you like to play again? y/n");
+              char option = Console.ReadKey().KeyChar;
+              if (option == 'n') {
+                isPlaying = false;
+                break;
+              } else if (option == 'y') {
+                break;
+              }
+            }
           }
         }
 
