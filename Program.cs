@@ -11,7 +11,6 @@ namespace CMP1127M {
             static int turn = 0;
 
             public Game(int playerCount) {
-
               players = new Player[playerCount];
               for (int i = 0; i < playerCount; i++) {
                 players[i] = new Player();
@@ -51,10 +50,8 @@ namespace CMP1127M {
 
             public List<int> previousRolls = new List<int>(); //this is a list so that we can store a potentially infinite set of values
 
-            Die[] dice = new Die[4];
 
             public Player(string name = "Guest") {
-
                 for (int i = 0; i < 5; i++) { //create dice
                     dice[i] = new Die();
                 }
@@ -63,17 +60,15 @@ namespace CMP1127M {
 
             public int turn() {
 
-                Console.WriteLine("Your turn, " + name + ".\nScore: " + score + "(1) - Throw, reroll three\n(2) - Throw All, double points");
                 char option = Console.ReadKey().KeyChar;
 
                 if (option == '1') {
                   Console.WriteLine("\nPress any key to roll!");
                   for (int i = 0; i < 5; i++) {
-                    Console.ReadKey();
                     dice[i].roll();
-                    Console.Write(dice[i].getValue() + " ");
                   }
                 }
+
 
                 return 0;
             }
