@@ -290,12 +290,23 @@ namespace CMP1127M {
             Console.ResetColor();
 
             Console.Write("Number of players (if 1 then an AI will be used): ");
+            int playerCount = 1;
 
-            int playerCount = Convert.ToInt32(Console.ReadLine());
+            try {
+              playerCount = Convert.ToInt32(Console.ReadLine());
+            } catch (FormatException e) {
+              Console.WriteLine("Error: " + e);
+            }
 
             Console.Write("Score to play to: ");
 
-            int maxScore = Convert.ToInt32(Console.ReadLine());
+            int maxScore = 50;
+
+            try {
+              maxScore = Convert.ToInt32(Console.ReadLine());
+            } catch (FormatException e) {
+              Console.WriteLine("Error: " + e);
+            }
 
             Game game = new Game(playerCount, maxScore);
             while (game.isGameOver == false) {
